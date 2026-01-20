@@ -1,38 +1,55 @@
-# Marvin: SillyTavern Extension for Sentiment Analysis and Servo Control
+Requirements
+Software
 
-## Description
+SillyTavern (latest version recommended).
+SillyTavern-Extras (ST-extras) installed and running with the flag: --enable-modules=classify --classification-model j-hartmann/emotion-english-distilroberta-base for the J-Hartmann emotion classification model.
+Node.js (for SillyTavern extensions).
+Python 3.x with dependencies: flask, flask-cors, pyserial.
+Access to SillyTavern's classification API (provided via ST-extras).
 
-Marvin is a custom extension for SillyTavern, a text-based AI chat interface. It adds real-time sentiment analysis to AI-generated messages and controls a physical robot (inspired by Marvin, the paranoid android from *The Hitchhiker's Guide to the Galaxy*) using servo motors. The extension biases sentiment detection toward "sadness" to match the character's depressed personality, translating emotions into head and arm movements. It also includes idle behaviors like random fidgeting and playback of depressive sound quotes when the robot is inactive.
+Hardware
 
-This project bridges software AI with hardware robotics, creating an immersive experience where the robot physically reacts to chat content.
+Raspberry Pi (or similar) with serial-enabled GPIO (e.g., /dev/serial0 at 115200 baud).
+6 servo motors connected to channels 0-5:
+0: Head Pan
+1: Head Tilt
+2: Left Arm Pan
+3: Left Arm Tilt
+4: Right Arm Pan
+5: Right Arm Tilt
 
-## Features
+Audio setup (e.g., speakers connected to Pi) with aplay for WAV playback.
+A folder named marvin_sound containing WAV files (e.g., depressive quotes like life.wav, ohno.wav).
 
-- **Sentiment Analysis**: Classifies text emotions (anger, disgust, fear, joy, neutral, sadness, surprise) using SillyTavern's API, with a strong bias toward sadness for low-confidence or neutral results.
-- **Real-Time Movement**: During message generation, analyzes text in chunks (250 characters) and sends servo commands to express sentiments (e.g., head tilt down for sadness, arms raised for joy).
-- **Idle Behaviors**: When inactive for 5 seconds, performs random "moping" movements (e.g., head glances, arm shrugs) every 3-8 seconds. Plays random WAV sounds from a folder every 60 seconds, with special head-shake animations for particularly depressed quotes.
-- **Hardware Control**: Uses a Python Flask server to handle HTTP requests and send commands to servos via serial (e.g., on a Raspberry Pi).
-- **Cooldowns and Safety**: Minimum 2-second cooldown between movements; auto-return to neutral pose after 5 seconds.
+Note: The backend assumes the Pi's IP is 192.168.1.51. Update the JS code if different.
+Usage
 
-## Requirements
+Enable the "Marvin Robot Integration" extension in SillyTavern settings.
+Ensure ST-extras server is running with the required flag for classification.
+Start a chat session. As the AI generates responses, the extension will analyze text, classify sentiment (biased toward sadness), and send movement commands.
+When idle, the robot will perform random movements and play sounds.
+For depressed quotes (specific WAV files), a special head-shake animation triggers.
 
-### Software
-- [SillyTavern](https://github.com/SillyTavern/SillyTavern) (latest version recommended).
-- Node.js (for SillyTavern extensions).
-- SillyTavern-Extras installed and running with ST- (this particular setup uses `--enable-modules=classify --classification-model j-hartmann/emotion-english-distilroberta-base` flag to run the st extras server.
-- Python 3.x with dependencies: `flask`, `flask-cors`, `pyserial` (install via `pip install flask flask-cors pyserial`).
-- Access to SillyTavern's classification API for sentiment analysis.
+Example Sentiment Mappings
 
-### Hardware
-- Raspberry Pi (or similar) with serial-enabled GPIO (e.g., `/dev/serial0` at 115200 baud).
-- 6 servo motors connected to channels 0-5:
-  - 0: Head Pan
-  - 1: Head Tilt
-  - 2: Left Arm Pan
-  - 3: Left Arm Tilt
-  - 4: Right Arm Pan
-  - 5: Right Arm Tilt
-- Audio setup (e.g., speakers connected to Pi) with `aplay` for WAV playback.
-- A folder named `marvin_sound` containing WAV files (e.g., depressive quotes like `life.wav`, `ohno.wav`).
+Sadness: Head tilts down, arms lower.
+Joy: Head pans left, arms raise.
+Anger: Head pans right, right arm extends.
+Default/Neutral: Falls back to sadness pose.
 
-Note: The backend assumes the Pi's IP is `192.168.1.51`. Update the JS code if different.
+Troubleshooting
+
+No Movements: Check the Pi IP in script.js and ensure the server is running.
+Sentiment Errors: Verify ST-extras is running with the correct flag and the classification API is enabled.
+Serial Issues: Confirm the serial port and baud rate.
+Sounds Not Playing: Ensure aplay is installed and WAV files are valid.
+
+Contributing
+This is a personal project, but pull requests are welcome for improvements like configurable IPs, more sentiments, or better idle variety.
+License
+MIT License. Feel free to modify and use for your own depressed robots!
+Author
+
+grapehonda (Custom)
+
+Version: 1.0
