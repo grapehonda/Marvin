@@ -1,0 +1,8 @@
+{
+  "display_name": "Marvin Robot Integration",
+  "author": "Custom",
+  "version": "1.0",
+  "requires": [],
+  "js": "script.js",
+  "loading_order": 10
+}
