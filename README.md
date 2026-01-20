@@ -19,6 +19,7 @@ This project bridges software AI with hardware robotics, creating an immersive e
 ### Software
 - [SillyTavern](https://github.com/SillyTavern/SillyTavern) (latest version recommended).
 - Node.js (for SillyTavern extensions).
+- SillyTavern-Extras installed and running with ST- (this particular setup uses `--enable-modules=classify --classification-model j-hartmann/emotion-english-distilroberta-base` flag to run the st extras server.
 - Python 3.x with dependencies: `flask`, `flask-cors`, `pyserial` (install via `pip install flask flask-cors pyserial`).
 - Access to SillyTavern's classification API for sentiment analysis.
 
