@@ -1,10 +1,11 @@
 Requirements
 
-SillyTavern (latest version recommended).
-SillyTavern-Extras (ST-extras) installed and running with the flag: --enable-modules=classify --classification-model j-hartmann/emotion-english-distilroberta-base for the J-Hartmann emotion classification model.
-Node.js (for SillyTavern extensions).
-Python 3.x with dependencies: flask, flask-cors, pyserial.
-Access to SillyTavern's classification API (provided via ST-extras).
+- SillyTavern (latest version recommended).
+- SillyTavern-Extras (ST-extras) installed and running with the flag: 
+`--enable-modules=classify --classification-model j-hartmann/emotion-english-distilroberta-base` for the J-Hartmann emotion classification model.
+- Node.js (for SillyTavern extensions).
+- Python 3.x with dependencies: flask, flask-cors, pyserial.
+- Access to SillyTavern's classification API (provided via ST-extras).
 
 Hardware
 
@@ -23,7 +24,7 @@ A folder named marvin_sound containing WAV files (e.g., depressive quotes like l
 Note: The backend assumes the Pi's IP is 192.168.1.51. Update the JS code if different.
 Usage
 
-Enable the "Marvin Robot Integration" extension in SillyTavern settings.
+Enable the "Marvin" extension in SillyTavern settings.
 Ensure ST-extras server is running with the required flag for classification.
 Start a chat session. As the AI generates responses, the extension will analyze text, classify sentiment (biased toward sadness), and send movement commands.
 When idle, the robot will perform random movements and play sounds.
