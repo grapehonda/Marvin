@@ -1,5 +1,4 @@
 Requirements
-Software
 
 SillyTavern (latest version recommended).
 SillyTavern-Extras (ST-extras) installed and running with the flag: --enable-modules=classify --classification-model j-hartmann/emotion-english-distilroberta-base for the J-Hartmann emotion classification model.
