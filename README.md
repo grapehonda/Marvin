@@ -9,7 +9,7 @@ Requirements
 
 Hardware
 
-Raspberry Pi/PCA9685 Servo breakout board.
+Raspberry Pi/PCA9685 Servo breakout board (or ssc-32, both versions included).
 6 servo motors connected to channels 0-5:
 0: Head Pan
 1: Head Tilt
