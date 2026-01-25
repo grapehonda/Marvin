@@ -9,7 +9,7 @@ Requirements
 
 Hardware
 
-Raspberry Pi (or similar) with serial-enabled GPIO (e.g., /dev/serial0 at 115200 baud).
+Raspberry Pi/PCA9685 Servo breakout board.
 6 servo motors connected to channels 0-5:
 0: Head Pan
 1: Head Tilt
@@ -41,7 +41,6 @@ Troubleshooting
 
 No Movements: Check the Pi IP in script.js and ensure the server is running.
 Sentiment Errors: Verify ST-extras is running with the correct flag and the classification API is enabled.
-Serial Issues: Confirm the serial port and baud rate.
 Sounds Not Playing: Ensure aplay is installed and WAV files are valid.
 
 Contributing
